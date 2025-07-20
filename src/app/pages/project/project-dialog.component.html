@@ -1,0 +1,66 @@
+<div
+  class="p-3 border-bottom-1 border-300 bg-white md:sticky z-index-1102 top-0"
+>
+  <div class="flex align-items-center justify-content-between gap-2">
+    <h2 class="font-semibold capitalize text-lg line-height-2 my-0">
+      {{ dialogMeta.dialogTitle }}
+    </h2>
+
+    <button
+      pButton
+      pRipple
+      class="flex-shrink-0 p-button-text p-button-plain p-button-rounded w-2rem h-2rem"
+      (click)="closeDialog()"
+      icon="pi pi-times"
+    ></button>
+  </div>
+</div>
+
+@if (dialogMeta.dialogData$ | async) { @if(editData){
+@if(editData.unitTypes?.length){
+<div class="px-3 pt-4 pb-2">
+  <h2
+    class="flex mb-3 capitalize align-items-center gap-2 text-800 text-xl font-medium"
+  >
+    <i class="fa-solid fa-sitemap"></i>
+    {{ "Unit Types" | translate }}
+  </h2>
+  <div class="chipes flex flex-wrap gap-2 pb-4">
+    @for(item of editData.unitTypes; track $index){
+    <p-chip
+      [label]="item | langProp : 'name_ar' : 'name_en'"
+      [removable]="true"
+      (onRemove)="removeUnitTypes(item.id)"
+    />
+    }
+  </div>
+</div>
+<div class="border-1 border-200 -mt-3"></div>
+}@else{
+<div class="px-3 pt-4 pb-2">
+  <span class="text-blue capitalize font-bold">
+    <i class="pi pi-info-circle"></i>
+    {{ "There Is No Unit Types Here For This project" | translate }}
+  </span>
+</div>
+} }
+
+<app-form
+  [form]="createUpdateForm"
+  [model]="model"
+  [fields]="fields"
+  [options]="options"
+  [withFormPadding]="dialogMeta.withFormPadding"
+  [showFormActions]="dialogMeta.showFormActions"
+  [showSubmitButton]="dialogMeta.showSubmitButton"
+  [showResetButton]="dialogMeta.showResetButton"
+  [buttonLabel]="dialogMeta.submitButtonLabel"
+  [detailsDialog]="detailsDialog()"
+  [submitBtnLoading]="isLoading()"
+  (onSubmit)="createUpdateRecord(dialogMeta.endpoints)"
+>
+</app-form>
+
+} @else {
+<app-spinner />
+}

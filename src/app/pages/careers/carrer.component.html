@@ -1,0 +1,39 @@
+<app-table-wrapper
+  [headerTitle]="indexMeta.indexTitle"
+  [titleIcon]="indexMeta.indexIcon"
+  [headerBtnLabel]="indexMeta.createBtnLabel"
+  [displayHeaderButton]="indexMeta.displayHeaderButton"
+  [columns]="indexMeta.columns"
+  [dataSource]="records()"
+  [loading]="isLoading()"
+  [totalRecords]="totalRecords()"
+  [recordsFiltered]="recordsFiltered()"
+  paginatorPosition="both"
+  [stateKey]="indexMeta.indexTableKey"
+  [indexRole]="roles().index"
+  [updateBtnRole]="roles().update"
+  [createBtnRole]="roles().create"
+  [deleteBtnRole]="roles().delete"
+  [globalFilterValue]="globalFilterValue"
+  [reorderableColumns]="indexMeta.reorderableColumns ?? false"
+  [reorderableRows]="indexMeta.reorderableRows ?? false"
+  (createBtnClicked)="openCreateRecordDialog()"
+  (updateBtnClicked)="openUpdateRecordDialog($event)"
+  (deleteBtnClicked)="deleteRecord($event)"
+  (onLoadData)="loadRecords($event)"
+>
+  <div moreActions>
+    <ul class="list-none m-0 p-0 flex flex-wrap gap-3 align-items-center">
+      <li>
+        <a
+          pButton
+          class="text-sm px-3 py-2 p-button p-button-outlined shadow-none"
+          [label]="'Applicant' | translate"
+          icon="fa-solid fa-user-tie"
+          routerLink="/applicant"
+        >
+        </a>
+      </li>
+    </ul>
+  </div>
+</app-table-wrapper>

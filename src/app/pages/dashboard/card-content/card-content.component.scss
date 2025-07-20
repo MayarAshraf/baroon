@@ -1,0 +1,18 @@
+:host ::ng-deep {
+  .p-card {
+    position: relative;
+    box-shadow: none;
+    .p-card-content {
+      padding: 1.3rem;
+      box-shadow: -4px 8px 23px -21px rgba(0, 0, 0, 0.75);
+      border: none;
+    }
+    svg {
+      position: absolute;
+      bottom: 0;
+      inset-inline: 0;
+      opacity: 0.5;
+      filter: opacity(0.1);
+    }
+  }
+}

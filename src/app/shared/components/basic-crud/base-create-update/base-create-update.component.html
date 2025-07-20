@@ -1,0 +1,53 @@
+<div
+  class="p-3 border-bottom-1 border-300 bg-white md:sticky z-index-1102 top-0"
+>
+  <div class="flex align-items-center justify-content-between gap-2">
+    <h2 class="font-semibold capitalize text-lg line-height-2 my-0">
+      {{ dialogMeta.dialogTitle }}
+
+      @if (dialogMeta.dialogSubtitle) { @if(!dialogMeta.subtitleLink){
+      <span class="block text-sm font-medium text-primary">{{
+        dialogMeta.dialogSubtitle
+      }}</span>
+      }@else{
+      <span class="block text-sm font-medium text-primary"
+        ><a
+          class="text-blue underline"
+          [routerLink]="'/' + dialogMeta.subtitleLink"
+          >{{ dialogMeta.dialogSubtitle }}
+        </a></span
+      >
+      } }
+    </h2>
+
+    <button
+      pButton
+      pRipple
+      class="flex-shrink-0 p-button-text p-button-plain p-button-rounded w-2rem h-2rem"
+      (click)="closeDialog()"
+      icon="pi pi-times"
+    ></button>
+  </div>
+</div>
+
+@if (dialogMeta.dialogData$ | async) {
+
+<app-form
+  [form]="createUpdateForm"
+  [model]="model"
+  [fields]="fields"
+  [options]="options"
+  [withFormPadding]="dialogMeta.withFormPadding"
+  [showFormActions]="dialogMeta.showFormActions"
+  [showSubmitButton]="dialogMeta.showSubmitButton"
+  [showResetButton]="dialogMeta.showResetButton"
+  [buttonLabel]="dialogMeta.submitButtonLabel"
+  [detailsDialog]="detailsDialog()"
+  [submitBtnLoading]="isLoading()"
+  (onSubmit)="createUpdateRecord(dialogMeta.endpoints)"
+>
+</app-form>
+
+} @else {
+<app-spinner />
+}

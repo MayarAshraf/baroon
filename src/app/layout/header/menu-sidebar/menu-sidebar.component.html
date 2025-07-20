@@ -1,0 +1,48 @@
+<div class="sidebar layout-sidebar flex flex-column shadow-2 overflow-hidden">
+  <div class="sidebar__header">
+    <div class="logo-wrapper" [ngClass]="{ show: showSidebar() }">
+      <div class="logo-dashboard">
+        <a routerLink="/dashboard">
+          <img
+            loading="lazy"
+            src="assets/media/logo/logo-dark.svg"
+            alt="kayan"
+            title="kayan"
+            class="w-6rem"
+          />
+        </a>
+      </div>
+      <div class="hamburger-toggle cursor-pointer" (click)="toggleSidebar()">
+        <span class="bar-top"></span>
+        <span class="bar-mid"></span>
+        <span class="bar-bot"></span>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar__content flex-auto overflow-y-auto overflow-x-hidden">
+    <ul class="list-none list py-3">
+      @for (item of menuItems(); track $index; let i = $index) {
+        @if (!item?.hidden) {
+          <li
+            [class]="'menu__item ' + item.styleClass"
+            routerLinkActive="is-active"
+          >
+            <div class="menu__item__inner">
+              <a [routerLink]="item.link">
+                <i
+                  [class]="item.icon + ' ' + 'icon'"
+                  [pTooltip]="item.tooltip | translate"
+                ></i>
+                <span
+                  class="menu-item__title capitalize"
+                  [ngClass]="{ show: showSidebar() }"
+                  >{{ item.title | translate }}</span
+                >
+              </a>
+            </div>
+          </li>
+        }
+      }
+    </ul>
+  </div>
+</div>

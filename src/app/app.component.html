@@ -1,0 +1,17 @@
+<ngx-loading-bar
+  color="var(--highlight-text-color)"
+  ref="http"
+  height="5px"
+  diameter="18px"
+  [includeSpinner]="false"
+/>
+
+<p-toast position="top-right" />
+
+<p-confirmDialog
+  #confirmDialog
+  styleClass="w-30rem"
+  [breakpoints]="{ '575px': '95%' }"
+/>
+
+<router-outlet />

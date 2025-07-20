@@ -1,0 +1,55 @@
+<div class="p-field">
+  @if(props.fileLabel){
+  <label>
+    {{ props.fileLabel | translate }}
+    @if(props.required && props.hideRequiredMarker !== true){
+    <span class="text-red-500">*</span>
+    }
+  </label>
+  } @if(props.description){
+  <p class="mb-3 text-xs">
+    {{ props.description }}
+  </p>
+  }
+
+  <p-fileUpload
+    #fileUpload
+    (onSelect)="onSelect($event)"
+    (onRemove)="onRemove($event)"
+    [multiple]="true"
+    [disabled]="props.disabled ?? false"
+    [accept]="props.accept ?? 'image/*'"
+    [maxFileSize]="props.maxFileSize ?? 5000000"
+    [fileLimit]="props.fileLimit"
+    [chooseLabel]="props.chooseLabel ?? ('Click to choose' | translate)"
+    chooseStyleClass="bg-transparent hover:bg-gray-50 border-1 border-500 text-sm text-600 shadow-none m-0"
+    [chooseIcon]="props.chooseIcon ?? 'pi pi-image'"
+    removeStyleClass="w-2rem h-2rem"
+    [showUploadButton]="false"
+    [showCancelButton]="false"
+  >
+    <ng-template pTemplate="content">
+      @if(previewUrls() && previewUrls().length && fileUpload.accept ===
+      'image/*'){
+      <p-orderList
+        [value]="previewUrls()"
+        [listStyle]="{ 'max-height': '25rem' }"
+        [dragdrop]="true"
+      >
+        <ng-template let-file pTemplate="item">
+          <div
+            class="p-2 gap-3 relative w-8rem h-8rem p-2 overflow-hidden border-2 border-300 bg-gray-100 hover:bg-gray-300 hover:border-400 border-round"
+          >
+            <img [src]="file" class="w-6rem img-cover" />
+          </div>
+        </ng-template>
+      </p-orderList>
+      }
+    </ng-template>
+  </p-fileUpload>
+  @if(showError && formControl.errors){
+  <small class="p-error" role="alert">
+    <formly-validation-message [field]="field"></formly-validation-message>
+  </small>
+  }
+</div>

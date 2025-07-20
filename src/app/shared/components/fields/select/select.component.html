@@ -1,0 +1,106 @@
+<div class="p-field">
+  @if (props.label && !props.isFloatedLabel) {
+  <ng-container *ngTemplateOutlet="label" />
+  }
+
+  <span [ngClass]="{'p-float-label': props.isFloatedLabel}">
+    @if (!props.multiple) {
+    <p-dropdown [options]="(options$ | async) ?? []"
+                [optionValue]="props.optionValue"
+                [optionLabel]="props.optionLabel"
+                [autoOptionFocus]="false"
+                [autoDisplayFirst]="false"
+                [formControl]="formControl"
+                [formlyAttributes]="field"
+                [filter]="props.filter"
+                [styleClass]="props.styleClass"
+                [appendTo]="props.appendTo ?? 'body'"
+                [dropdownIcon]="props.dropdownIcon"
+                [placeholder]="props.placeholder ?? ''"
+                [tooltip]="props.tooltip"
+                [tooltipPosition]="props.tooltipPosition"
+                [showClear]="props.showClear"
+                [required]="props.required ?? false"
+                [optionDisabled]="props.optionDisabled"
+                [scrollHeight]="props.scrollHeight ?? '150px'"
+                [class.ng-dirty]="showError"
+                [group]="props.group"
+                [lazy]="props.lazy"
+                [virtualScroll]="props.virtualScroll"
+                [virtualScrollItemSize]="props.virtualScrollItemSize"
+                [virtualScrollOptions]="props.virtualScrollOptions"
+                (onChange)="props.change && props.change(field, $event)">
+
+      @if (props.isCountryCode) {
+      <!-- <ng-template let-country
+                   pTemplate="selectedItem">
+        <span class="text-sm font-medium">
+          {{ country?.code+' '+'('+country?.country+' '+country?.key+')' }}
+        </span>
+      </ng-template> -->
+
+      <ng-template let-country
+                   pTemplate="item">
+        <span class="text-sm font-medium">
+          {{ country.code+' '+'('+country.country+' '+country.key+')' }}
+        </span>
+      </ng-template>
+      }
+
+    </p-dropdown>
+    } @else {
+    <p-multiSelect #multiSelect
+                   [options]="(options$ | async) ?? []"
+                   [optionValue]="props.optionValue"
+                   [optionLabel]="props.optionLabel"
+                   [autoOptionFocus]="false"
+                   [formControl]="formControl"
+                   [formlyAttributes]="field"
+                   [filter]="props.filter"
+                   [showToggleAll]="props.showToggleAll ?? true"
+                   [styleClass]="props.styleClass"
+                   [appendTo]="props.appendTo ?? 'body'"
+                   [dropdownIcon]="props.dropdownIcon"
+                   [display]="props.display ?? 'chip'"
+                   [placeholder]="props.placeholder ?? ''"
+                   [tooltip]="props.tooltip"
+                   [tooltipPosition]="props.tooltipPosition"
+                   [showClear]="props.showClear"
+                   [showHeader]="props.showHeader"
+                   [required]="props.required ?? false"
+                   [optionDisabled]="props.optionDisabled"
+                   [scrollHeight]="props.scrollHeight ?? '150px'"
+                   [class.ng-dirty]="showError"
+                   [lazy]="props.lazy"
+                   [maxSelectedLabels]="null"
+                   [virtualScroll]="props.virtualScroll"
+                   [virtualScrollItemSize]="props.virtualScrollItemSize"
+                   [virtualScrollOptions]="props.virtualScrollOptions"
+                   (onChange)="props.change && props.change(field, $event)">
+    </p-multiSelect>
+    }
+
+    @if (props.label && props.isFloatedLabel) {<ng-container *ngTemplateOutlet="label" />}
+  </span>
+
+  @if (props.description) {
+  <p class="mt-1 font-medium text-xs text-primary">
+    {{ props.description }} <i class="fas fa-circle-info text-sm"></i> </p>
+  }
+
+  @if (showError && formControl.errors) {
+  <small class="p-error"
+         role="alert">
+    <formly-validation-message [field]="field"></formly-validation-message>
+  </small>
+  }
+</div>
+
+<ng-template #label>
+  <label [ngClass]="props.labelClass">
+    {{ props.label }}
+    @if (props.required && props.hideRequiredMarker !== true) {
+    <span class="text-red-500">*</span>
+    }
+  </label>
+</ng-template>

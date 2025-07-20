@@ -1,0 +1,44 @@
+<app-menu-sidebar [logout]="closeSidebar()" />
+<div class="layout-header">
+  <div
+    class="flex align-items-center gap-3"
+    [ngClass]="{
+      'justify-content-end': !isLgScreen(),
+      'justify-content-between': isLgScreen()
+    }"
+  >
+    @if(showBtnDisplayMenuSidebar()){
+    <div>
+      <button
+        pButton
+        pRipple
+        (click)="showSidebar()"
+        icon="fa-solid fa-bars"
+        class="p-button-icon-only p-button-rounded p-button-outlined"
+      ></button>
+    </div>
+    } @if(isLgScreen()){
+    <p-menubar [model]="headerLinks" styleClass="header-items"> </p-menubar>
+    }
+    <div class="flex gap-3 align-items-center">
+      <a
+        pButton
+        href="{{ domain }}"
+        target="_blank"
+        [label]="'Website Online' | translate"
+        icon="fas fa-eye"
+        class="p-button-rounded p-button-text p-button-sm"
+      ></a>
+      <app-lang-switcher />
+      <button
+        pButton
+        pRipple
+        (click)="logout()"
+        icon="pi pi-sign-out"
+        [pTooltip]="'logout' | translate"
+        tooltipPosition="bottom"
+        class="w-2.5rem h-2.5rem p-0 p-button-rounded p-button-text"
+      ></button>
+    </div>
+  </div>
+</div>

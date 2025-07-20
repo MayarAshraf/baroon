@@ -1,0 +1,31 @@
+<app-table-wrapper
+  #locationsTable
+  [headerTitle]="indexMeta.indexTitle"
+  [titleIcon]="indexMeta.indexIcon"
+  [headerBtnLabel]="indexMeta.createBtnLabel"
+  [columns]="indexMeta.columns"
+  [indexRole]="roles().index"
+  [updateBtnRole]="roles().update"
+  [createBtnRole]="roles().create"
+  [deleteBtnRole]="roles().delete"
+  [dataSource]="records()"
+  [loading]="isLoading()"
+  [totalRecords]="totalRecords()"
+  [recordsFiltered]="recordsFiltered()"
+  paginatorPosition="both"
+  [stateKey]="indexMeta.indexTableKey"
+  [globalFilterValue]="globalFilterValue"
+  (createBtnClicked)="openCreateRecordDialog()"
+  (updateBtnClicked)="openUpdateRecordDialog($event)"
+  (deleteBtnClicked)="deleteRecord($event)"
+  (onLoadData)="!parent_id() ? loadRecords($event) : lazyLoadEvent.set($event)"
+>
+  <ng-template #locationName let-location>
+    <a
+      pButton
+      [routerLink]="['/locations/' + location.id]"
+      [label]="location | langProp : 'name_ar' : 'name_en'"
+      class="p-button-link p-0 text-blue"
+    ></a>
+  </ng-template>
+</app-table-wrapper>

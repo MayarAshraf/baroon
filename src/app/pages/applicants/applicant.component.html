@@ -1,0 +1,45 @@
+<app-table-wrapper
+  [headerTitle]="indexMeta.indexTitle"
+  [titleIcon]="indexMeta.indexIcon"
+  [headerBtnLabel]="indexMeta.createBtnLabel"
+  [displayHeaderButton]="indexMeta.displayHeaderButton"
+  [columns]="indexMeta.columns"
+  [dataSource]="records()"
+  [loading]="isLoading()"
+  [totalRecords]="totalRecords()"
+  [recordsFiltered]="recordsFiltered()"
+  paginatorPosition="both"
+  [stateKey]="indexMeta.indexTableKey"
+  [indexRole]="roles().index"
+  [updateBtnRole]="roles().update"
+  [createBtnRole]="roles().create"
+  [deleteBtnRole]="roles().delete"
+  [globalFilterValue]="globalFilterValue"
+  [reorderableColumns]="indexMeta.reorderableColumns ?? false"
+  [reorderableRows]="indexMeta.reorderableRows ?? false"
+  (createBtnClicked)="openCreateRecordDialog()"
+  (updateBtnClicked)="openUpdateRecordDialog($event)"
+  (deleteBtnClicked)="deleteRecord($event)"
+  (onLoadData)="loadRecords($event)"
+>
+  <ng-template #attachments let-applicant>
+    @for(item of applicant.attachments; track $index){
+    <a
+      [href]="item"
+      download
+      class="block text-blue-400 uppercase font-bold mb-2"
+    >
+      attachment {{ $index + 1 }}</a
+    >
+    }
+  </ng-template>
+  <ng-template #status let-applicant>
+    <p-dropdown
+      [options]="statusTypes"
+      [(ngModel)]="applicant.status"
+      styleClass="py-1 pl-2 shadow-none"
+      appendTo="body"
+      (onChange)="changeStatus(applicant.id, $event)"
+    />
+  </ng-template>
+</app-table-wrapper>

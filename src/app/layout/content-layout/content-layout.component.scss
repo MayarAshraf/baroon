@@ -1,0 +1,11 @@
+.main-content {
+  padding-block: 20px;
+  padding-inline: 1rem;
+  background-color: #f8f8f8;
+  margin-inline-start: var(--sidebar-width);
+  transition: 0.3s margin-inline-start linear;
+
+  @media screen and (max-width: 767px) {
+    margin-inline-start: var(--layout-space);
+  }
+}

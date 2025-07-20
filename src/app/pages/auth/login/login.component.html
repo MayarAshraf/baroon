@@ -1,0 +1,21 @@
+<div class="text-center mb-2">
+  <h1 class="font-bold text-xl">{{ "Login" | translate }}</h1>
+</div>
+
+<app-form
+  [form]="loginForm"
+  [model]="model"
+  [fields]="fields"
+  [submitBtnLoading]="loading()"
+  buttonLabel="{{ 'Login' | translate }}"
+  footerFormClass="px-0"
+  submitButtonClass="uppercase title-font text-base w-full  bg-primary-color border-none shadow-none"
+  (onSubmit)="login()"
+>
+</app-form>
+
+<div class="flex px-3">
+  <a class="text-blue-500 capitalize" routerLink="/auth/forget-password">
+    {{ 'forget password' | translate }}
+  </a>
+</div>

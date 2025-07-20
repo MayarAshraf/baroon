@@ -1,0 +1,83 @@
+:host ::ng-deep {
+  .card-column {
+    &:first-child {
+      .icon-holder {
+        background-color: #e9e7fd;
+        color: #7367f0;
+      }
+      .path {
+        fill: #7367f0;
+      }
+    }
+    &:nth-child(2) {
+      .icon-holder {
+        background-color: #ddf6e8;
+        color: #28c76f;
+      }
+      .path {
+        fill: #28c76f;
+      }
+    }
+    &:nth-child(3) {
+      .icon-holder {
+        background-color: #ffe2e3;
+        color: #ff4c51;
+      }
+      .path {
+        fill: #ff4c51;
+      }
+    }
+    &:nth-child(4) {
+      .icon-holder {
+        background-color: #d6f4f8;
+        color: #00bad1;
+      }
+      .path {
+        fill: #00bad1;
+      }
+    }
+    &:nth-child(5) {
+      .icon-holder {
+        background-color: #fef0c7;
+        color: #ff9f43;
+      }
+      .path {
+        fill: #ff9f43;
+      }
+    }
+    &:nth-child(6) {
+      .icon-holder {
+        background-color: #d0ebff;
+        color: #339af0;
+      }
+      .path {
+        fill: #339af0;
+      }
+    }
+    &:nth-child(7) {
+      .icon-holder {
+        background-color: #e6f7d4;
+        color: #7bd235;
+      }
+      .path {
+        fill: #7bd235;
+      }
+    }
+  }
+}
+
+h1 {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  color: var(--gray-400);
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: clamp(12vw, 7vw, 2rem);
+  line-height: 1;
+  margin: 0;
+}
+.card-box {
+  box-shadow: -4px 8px 23px -21px rgba(0, 0, 0, 0.75);
+}

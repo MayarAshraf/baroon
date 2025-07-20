@@ -1,0 +1,48 @@
+
+// Convert px to rem
+@function toRem($value) {
+  $remValue: $value;
+
+  @if (type-of($value) == number) {
+    $remValue: ($value / 16) + rem;
+  }
+
+  @return $remValue;
+}
+
+@mixin flex($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+@mixin pseudo($bg, $opacity) {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $bg;
+  opacity: $opacity;
+  pointer-events: none;
+}
+
+@mixin breakpoint($direction, $breakpoint) {
+  @if $direction==max {
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+  } @else if $direction==min {
+    @media (min-width: $breakpoint) {
+      @content;
+    }
+  }
+}
+
+@mixin gridContainer($minWidth) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(#{$minWidth}, 1fr));
+  gap: 1rem;
+}

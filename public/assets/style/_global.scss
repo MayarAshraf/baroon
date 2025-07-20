@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap");
+
+:root {
+  --font-family: "Open Sans", sans-serif;
+  --z-index-1100: 1100;
+  --z-index-1101: 1101;
+  --z-index-1102: 1102;
+  --z-index-1103: 1103;
+  --layout-space: 4rem;
+  --sidebar-width: 4rem;
+  --scrollbar-width: 4px;
+  --field-height: 40px;
+  --layout-inline-padding: 1.5rem;
+  --text-blue: #3b82f6;
+  --primary-color: #2e2e30;
+  --secondary-color: #373739;
+  --accent-color: #f6f859;
+  --accent-color-lighten: #f9fca4;
+  --accent-color-darken: #f1f50a;
+
+  &[dir="rtl"] {
+    --body-font: "Cairo", sans-serif;
+    --title-font: "Cairo", sans-serif;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  // prevent scroll to top on open/close mat-dialog
+  &.cdk-global-scrollblock {
+    position: initial;
+    width: initial;
+    overflow: hidden;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0px !important;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+  margin: 13px 0;
+}
+
+body {
+  text-align: start;
+  color: var(--secondary-color);
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  text-rendering: optimizeLegibility;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+[dir="rtl"] {
+  * {
+    letter-spacing: normal !important;
+  }
+
+  input[type="email"]::placeholder {
+    text-align: end;
+  }
+}
+
+iframe {
+  border: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+textarea {
+  resize: none;
+}
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
